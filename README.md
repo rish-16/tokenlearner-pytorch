@@ -16,15 +16,14 @@ import torch
 from tokenlearner_pytorch import TokenLearner
 
 tklr = TokenLearner(S=8)
-
-x = torch.rand(3, 32, 32)
-y = tklr(x)
+x = torch.rand(512, 32, 32, 3)
+y = tklr(x) # [512, 8, 3]
 ```
 
 ## TODO
-- [ ] Add batch support to Spatial Attention
-- [ ] Implement TokenLearner
-- [ ] Implement TokenFuser
+- [ ] Add support for temporal dimension `T`
+- [ ] Implement `TokenFuser` with `ViT`
+- [ ] Implement `TokenFuser` with `ViViT`
 
 ## Contributions
 If I've made any errors or you have any suggestions, feel free to raise an Issue or PR. All contributions welcome!!
