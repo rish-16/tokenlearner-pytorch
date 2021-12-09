@@ -8,7 +8,7 @@ with open(path.join(this_directory, 'README.md')) as f:
 
 setup(
     name='tokenlearner_pytorch',
-    version='0.1.1',    
+    version='0.1.2',    
     description='Unofficial PyTorch implementation of TokenLearner by Google AI',
     long_description=long_description,
     long_description_content_type = 'text/markdown',

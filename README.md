@@ -1,7 +1,7 @@
 # tokenlearner-pytorch
 Unofficial PyTorch implementation of `TokenLearner` by Ryoo et al. from Google AI ([`abs`](https://arxiv.org/abs/2106.11297), [`pdf`](https://arxiv.org/pdf/2106.11297.pdf))
 
-<img src="tklr.png" width=650 />
+<img src="https://raw.githubusercontent.com/rish-16/tokenlearner-pytorch/main/tklr.png" width=650 />
 
 ## Installation
 You can install TokenLearner via `pip`:
