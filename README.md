@@ -22,7 +22,7 @@ x = torch.rand(512, 32, 32, 3)
 y = tklr(x) # [512, 8, 3]
 ```
 
-You can also `TokenLearner` and `TokenFuser` together with Multi-head Self-Attention as done in the paper:
+You can also use `TokenLearner` and `TokenFuser` together with Multi-head Self-Attention as done in the paper:
 
 ```python
 import torch
