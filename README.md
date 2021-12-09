@@ -31,7 +31,7 @@ from tokenlearner_pytorch import TokenLearner, TokenFuser
 
 mhsa = nn.MultiheadAttention(3, 1)
 tklr = TokenLearner(S=8)
-tkfr = TokenFuser(32, 32, 3, S=8)
+tkfr = TokenFuser(H=32, W=32, C=3, S=8)
 
 x = torch.rand(512, 32, 32, 3) # a batch of images
 
