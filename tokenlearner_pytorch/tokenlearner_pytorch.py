@@ -24,7 +24,7 @@ class SpatialAttention(nn.Module):
         weight_map = torch.sigmoid(fmap)
         out = (x * weight_map).mean(dim=(-2, -1))
         
-        return out
+        return out, x * weight_map
 
 class TokenLearner(nn.Module):
     def __init__(self, S) -> None:
@@ -36,13 +36,29 @@ class TokenLearner(nn.Module):
         B, _, _, C = x.shape
         Z = torch.Tensor(B, self.S, C)
         for i in range(self.S):
-            Ai = self.tokenizers[i](x) # [B, C]
+            Ai, _ = self.tokenizers[i](x) # [B, C]
             Z[:, i, :] = Ai
         return Z
     
 class TokenFuser(nn.Module):
-    def __init__(self) -> None:
+    def __init__(self, H, W, C, S) -> None:
         super().__init__()
+        self.projection = nn.Linear(S, S, bias=False)
+        self.Bi = nn.Linear(C, S)
+        self.spatial_attn = SpatialAttention()
+        self.S = S
         
-    def forward(self, x):
-        pass
+    def forward(self, y, x):
+        B, S, C = y.shape
+        B, H, W, C = x.shape
+        
+        Y = self.projection(y.view(B, C, S)).view(B, S, C)
+        Bw = torch.sigmoid(self.Bi(x)).view(B, H*W, S) # [B, HW, S]
+        BwY = torch.matmul(Bw, Y)
+        
+        _, xj = self.spatial_attn(x)
+        xj = xj.view(B, H*W, C)
+        
+        out = (BwY + xj).view(B, H, W, C)
+        
+        return out 

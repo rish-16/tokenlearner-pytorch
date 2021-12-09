@@ -1,1 +1,1 @@
-from tokenlearner_pytorch.tokenlearner_pytorch import TokenLearner
+from tokenlearner_pytorch.tokenlearner_pytorch import TokenLearner, TokenFuser
