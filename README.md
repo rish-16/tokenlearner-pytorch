@@ -40,7 +40,7 @@ y = y.view(8, 512, 3)
 y, _ = mhsa(y, y, y) # ignore attn weights
 y = y.view(512, 8, 3)
 
-out = tkfr(y, x) # [512, 32, 23, 3]
+out = tkfr(y, x) # [512, 32, 32, 3]
 ```
 
 ## TODO
