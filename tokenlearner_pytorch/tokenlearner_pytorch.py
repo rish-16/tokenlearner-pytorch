@@ -30,7 +30,7 @@ class TokenLearner(nn.Module):
     def __init__(self, S) -> None:
         super().__init__()
         self.S = S
-        self.tokenizers = [SpatialAttention() for _ in range(S)]
+        self.tokenizers = nn.ModuleList([SpatialAttention() for _ in range(S)])
         
     def forward(self, x):
         B, _, _, C = x.shape
